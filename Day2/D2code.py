@@ -15,8 +15,6 @@ def integrate_input(input_file):
 input_list = []
 integrate_input('D2input.txt')
 
-print (input_list)
-
 test_cases = {  (1,9,10,3,2,3,11,0,99,30,40,50):[3500,9,10,70,2,3,11,0,99,30,40,50],
 				(1, 0, 0, 0, 99): [2, 0, 0, 0, 99],
 				(2, 3, 0, 3, 99): [2, 3, 0, 6, 99],
