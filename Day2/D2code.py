@@ -41,14 +41,15 @@ def tests(test_cases, function):
 def intcode_computer(code):
 	if type(code) == tuple:
 		code = list(code)
+	l_code = code.copy()
 	c_index = 0
 	while True:
-		if code[c_index] == 99:
-			return code
-		elif code[c_index] == 1:
-			code[code[c_index + 3]] = code[code[c_index + 1]] + code[code[c_index + 2]]
-		elif code[c_index] == 2:
-			code[code[c_index + 3]] = code[code[c_index + 1]] * code[code[c_index + 2]]
+		if l_code[c_index] == 99:
+			return l_code
+		elif l_code[c_index] == 1:
+			l_code[l_code[c_index + 3]] = l_code[l_code[c_index + 1]] + l_code[l_code[c_index + 2]]
+		elif l_code[c_index] == 2:
+			l_code[l_code[c_index + 3]] = l_code[l_code[c_index + 1]] * l_code[l_code[c_index + 2]]
 		else:
 			return 'Error, unknown opcode! Received {} while expecting either 1, 2, or 99!'.format(code[current_index])
 		c_index += 4
@@ -57,14 +58,18 @@ def intcode_computer(code):
 input_list[1] = 12
 input_list[2] = 2
 answer = intcode_computer(input_list)
+
 print (answer[0])
 
 # Part 2 -------------------------------------------------------------
 
-#test_cases_p2 = {12: 2, 14: 2, 1969: 966, 100756: 50346}
+def verb_and_noun():
+	for noun in range(100):
+		for verb in range(100):
+			input_list[1] = noun
+			input_list[2] = verb
+			answer = intcode_computer(input_list)
+			if answer[0] == 19690720:
+				return 100 * noun + verb
 
-
-
-#tests(test_cases_p2, fuel_calculation_p2)
-
-
+print (verb_and_noun())
