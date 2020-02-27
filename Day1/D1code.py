@@ -1,5 +1,7 @@
 # AoC 2019 -- Day 1
 
+# Part 1 ---------------------------------------------------
+
 def integrate_input(input_file):
 	"""
 	Takes the daily input file and adds it to a list
@@ -25,7 +27,7 @@ def tests(test_cases, function):
 			print ('Tested for value {} and got {}, which is correct!'.format(key, test_cases[key]))
 		else:
 			print ('Issue with the test for value {}'.format(key))
-			print ('Expected {} and instead got {}!'.format(test_cases[key], fuel_calculation(key)))
+			print ('Expected {} and instead got {}!'.format(test_cases[key], function(key)))
 
 
 def fuel_calculation(mass):
@@ -36,6 +38,30 @@ incremented_total = 0
 for element in input_list:
 	incremented_total += fuel_calculation(element)
 
+
 print (incremented_total)
 
 tests(test_cases, fuel_calculation)
+
+# Part 2 -------------------------------------------------------------
+
+test_cases_p2 = {12: 2, 14: 2, 1969: 966, 100756: 50346}
+
+def fuel_calculation_p2(mass):
+	fuel_needed = (mass // 3) - 2
+	if fuel_needed < 3 and fuel_needed > 0:
+		return fuel_needed
+	if fuel_needed < 0:
+		return 0
+	else:
+		return (fuel_needed + fuel_calculation_p2(fuel_needed))
+
+tests(test_cases_p2, fuel_calculation_p2)
+
+incremented_total_2 = 0
+
+for element in input_list:
+	incremented_total_2 += fuel_calculation_p2(element)
+
+
+print (incremented_total_2)
