@@ -51,7 +51,7 @@ def intcode_computer(code):
 		elif l_code[c_index] == 2:
 			l_code[l_code[c_index + 3]] = l_code[l_code[c_index + 1]] * l_code[l_code[c_index + 2]]
 		else:
-			return 'Error, unknown opcode! Received {} while expecting either 1, 2, or 99!'.format(code[current_index])
+			return 'Error, unknown opcode! Received {} while expecting either 1, 2, or 99!'.format(l_code[current_index])
 		c_index += 4
 
 #tests(test_cases, intcode_computer)
