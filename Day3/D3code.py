@@ -46,6 +46,35 @@ def manhattan_distance(input):
     assert type(input) == tuple
     for x in range(len(input)):
         assert type(input[x]) == tuple
-    pass
 
-tests(test_cases, manhattan_distance)
+    wire1 = input[1]
+    wire2 = input[2]
+
+    def make_path(wire):
+        wire_path = [(0,0),]
+        for step in wire:
+            if step[0] == 'R':
+                wire_path.append((wire_path[-1][0], wire_path[-1][1] + int(step[1:])))
+            elif step[0] == 'L':
+                wire_path.append((wire_path[-1][0], wire_path[-1][1] - int(step[1:])))
+            elif step[0] == 'U':
+                wire_path.append((wire_path[-1][0] + int(step[1:]), wire_path[-1][1]))
+            elif step[0] == 'D':
+                wire_path.append((wire_path[-1][0] - int(step[1:]), wire_path[-1][1]))
+        return wire_path
+
+    wire1_path = make_path(wire1)
+    wire2_path = make_path(wire2)
+
+    def find_crossings(path1, path2):
+        pass
+
+    return (wire1_path, wire2_path)
+
+
+n = (('Test 1',), ('R8','U5','L5','D3'), ('U7','R6','D4','L4'))
+
+w1, w2 = manhattan_distance(n)
+print (w1)
+print (w2)
+#tests(test_cases, manhattan_distance)
